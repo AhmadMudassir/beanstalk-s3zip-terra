@@ -47,7 +47,7 @@ resource "aws_iam_role_policy_attachment" "role-policy-attachment" {
 }
 
 resource "aws_s3_object" "app_zip" {
-  bucket = "elasticbeanstalk-us-east-2-504649076991"
+  bucket = "elasticbeanstalk-us-east-2-<aws_account_id>"
   key    = "node-app.zip"
   source = "./node-app.zip"
   etag   = filemd5("./node-app.zip")
@@ -78,7 +78,7 @@ resource "aws_elastic_beanstalk_environment" "testenv" {
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "MONGO_URI"
-    value     = "mongodb+srv://Ahmad:pass123@cluster0.tf6bj.mongodb.net/pagination-node"
+    value     = "<mongodb_cluster_connection>/pagination-node"
   }
   setting {
     namespace = "aws:elasticbeanstalk:environment:process:default"
